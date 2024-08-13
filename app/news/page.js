@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import { DUMMY_NEWS } from "@/dummy-news";
+import NewsList from "@/components/news-list";
 
 export default function NewsPage() {
   return (
@@ -16,17 +17,7 @@ export default function NewsPage() {
         <li>
           <Link href="/news/third-news">Third News Item</Link>
         </li> */}
-        {DUMMY_NEWS.map((newsItem) => (
-          <li key={newsItem.id}>
-            <Link href={`/news/${newsItem.slug}`}>
-              <img
-                src={`/images/news/${newsItem.image}`}
-                alt={newsItem.title}
-              />
-              <span>{newsItem.title}</span>
-            </Link>
-          </li>
-        ))}
+        <NewsList news={DUMMY_NEWS} />
       </ul>
     </>
   );
