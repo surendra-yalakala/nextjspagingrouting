@@ -2,8 +2,9 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { Children } from "react";
 
-export default function NavLink({ href, title }) {
+export default function NavLink({ href, title, children }) {
   const pathName = usePathname();
 
   return (
