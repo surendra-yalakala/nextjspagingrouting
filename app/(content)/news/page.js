@@ -2,6 +2,7 @@
 
 // import { DUMMY_NEWS } from "@/dummy-news";
 import NewsList from "@/components/news-list";
+import { getAllNews } from "@/lib/news";
 import { useEffect, useState } from "react";
 
 export default async function NewsPage() {
@@ -28,12 +29,14 @@ export default async function NewsPage() {
   // if (isLoading) return <p>Loading...</p>;
   // if (error) return <p>{error}</p>;
 
-  const response = await fetch(" http://localhost:3000/news");
-  if (!response.ok) {
-    throw new Error("Failed to fetch news.");
-  }
+  // const response = await fetch(" http://localhost:3000/news");
+  // if (!response.ok) {
+  //   throw new Error("Failed to fetch news.");
+  // }
 
-  const news = await response.json();
+  // const news = await response.json();
+
+  const news = await getAllNews();
 
   return (
     <>
