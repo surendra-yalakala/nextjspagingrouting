@@ -4,34 +4,42 @@
 import NewsList from "@/components/news-list";
 import { useEffect, useState } from "react";
 
-export default function NewsPage() {
-  const [error, setError] = useState();
-  const [isLoading, setIsLoading] = useState(false);
-  const [news, setNews] = useState([]);
+export default async function NewsPage() {
+  // const [error, setError] = useState();
+  // const [isLoading, setIsLoading] = useState(false);
+  // const [news, setNews] = useState([]);
 
-  useEffect(() => {
-    async function fetchNews() {
-      setIsLoading(true);
-      const response = await fetch(" http://localhost:3000/news");
-      if (!response.ok) {
-        setError("Failed to fetch news.");
-      }
+  // useEffect(() => {
+  //   async function fetchNews() {
+  //     setIsLoading(true);
+  //     const response = await fetch(" http://localhost:3000/news");
+  //     if (!response.ok) {
+  //       setError("Failed to fetch news.");
+  //     }
 
-      const news = await response.json();
-      setIsLoading(false);
-      setNews(news);
-    }
+  //     const news = await response.json();
+  //     setIsLoading(false);
+  //     setNews(news);
+  //   }
 
-    fetchNews();
-  }, []);
+  //   fetchNews();
+  // }, []);
 
-  if (isLoading) return <p>Loading...</p>;
-  if (error) return <p>{error}</p>;
+  // if (isLoading) return <p>Loading...</p>;
+  // if (error) return <p>{error}</p>;
+
+  const response = await fetch(" http://localhost:3000/news");
+  if (!response.ok) {
+    throw new Error("Failed to fetch news.");
+  }
+
+  const news = await response.json();
 
   return (
     <>
       <h1>News page</h1>
-      <ul className="news-list">{news && <NewsList news={news} />}</ul>
+      {/* <ul className="news-list">{news && <NewsList news={news} />}</ul> */}
+      <NewsList news={news} />
     </>
   );
 }
